@@ -7,6 +7,10 @@ $ npm install react-blockly-drawer --save
 ```
 
 ```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Blockly from 'node-blockly/browser'; 
+
 import BlocklyDrawer from 'react-blockly-drawer';
   
   const helloWorld =  {
