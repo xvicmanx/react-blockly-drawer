@@ -1,0 +1,44 @@
+{
+  "name": "blockly-react",
+  "version": "1.0.0",
+  "description": "A React component to play with blockly.",
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "watch 'npm run build' src",
+    "build": "babel src -d build",
+    "test": "jest --env=jsdom",
+    "test-watch": "npm test -- --watch"
+  },
+  "babel": {
+    "presets": [
+      "latest",
+      "react"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xvicmanx/blockly-react"
+  },
+  "keywords": [
+    "blockly",
+    "react"
+  ],
+  "author": "Victor Trejo",
+  "license": "ISC",
+  "dependencies": {
+    "node-blockly": "^1.0.31",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "jest": "^21.2.1",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
+    "watch": "^1.0.2"
+  }
+}
