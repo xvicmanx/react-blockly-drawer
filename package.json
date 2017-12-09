@@ -1,5 +1,5 @@
 {
-  "name": "blockly-react",
+  "name": "react-blockly-drawer",
   "version": "1.0.0",
   "description": "A React component to play with blockly.",
   "main": "build/index.js",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xvicmanx/blockly-react"
+    "url": "git+https://github.com/xvicmanx/react-blockly-drawer"
   },
   "keywords": [
     "blockly",
