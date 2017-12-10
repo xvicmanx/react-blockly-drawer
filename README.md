@@ -126,5 +126,6 @@ Each item should have the following properties:
     }
  ```
 
-
+## Comments
+Feel free to make any suggestion to improve this component.
 
