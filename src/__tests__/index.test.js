@@ -25,7 +25,7 @@ describe('BlocklyDrawerComponent', () => {
         Blockly.JavaScript.workspaceToCode.mockImplementation(() => 'test-code');
         Blockly.Xml.workspaceToDom.mockImplementation(() => 'test-xml');
         Blockly.Xml.domToText.mockImplementation(() => 'test-dom-text');
-        
+        Blockly.Xml.textToDom.mockImplementation(() => 'test-dom');
     });
 
     it('renders correctly when no tools nor predefined categories are passed', () => {
@@ -34,17 +34,18 @@ describe('BlocklyDrawerComponent', () => {
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
-    
-    
+
+
     it('renders correctly when predefined categories are passed', () => {
         const comp = mount(
             <Drawer>
                 <category name="Functions" custom="PROCEDURE"></category>
             </Drawer>
         );
-    
+
         expect(comp.html()).toMatchSnapshot();
     });
+
 
     it('renders correctly when tools are passed', () => {
         const comp = mount(
@@ -53,13 +54,13 @@ describe('BlocklyDrawerComponent', () => {
                     name: 'TestName',
                     category: 'TestCategory',
                     block: {
-                        init: () => {},
+                        init: () => { },
                     },
-                    generator: () => {},
+                    generator: () => { },
                 }
             ]} />
         );
-    
+
         expect(comp.html()).toMatchSnapshot();
     });
 
@@ -113,9 +114,34 @@ describe('BlocklyDrawerComponent', () => {
             {
                 toolbox: Blockly.inject.mock.calls[0][1].toolbox.outerHTML
             }
-        ).toEqual({ toolbox: '<xml style="display: none;"></xml>' }
-    );
-        
+        ).toEqual({ toolbox: '<xml style="display: none;"></xml>' });
+    });
+
+    it('initializes correctly when initial workspace is passed', () => {
+        const workspaceXML = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="HelloWorld" id="gUb!;E2#;hgDD2tP3][/" x="264" y="101"><field name="NAME">sdfsd</field></block></xml>';
+        const comp = mount(
+            <Drawer
+                workspaceXML={workspaceXML}
+            />
+        );
+
+        expect(comp.html()).toMatchSnapshot();
+        expect(
+            Blockly.Xml.textToDom.mock.calls.length
+        ).toBe(1);
+        expect(
+            Blockly.Xml.textToDom.mock.calls[0][0]
+        ).toBe(workspaceXML);
+
+        expect(
+            Blockly.Xml.domToWorkspace.mock.calls.length
+        ).toBe(1);
+        expect(
+            Blockly.Xml.domToWorkspace.mock.calls[0][0]
+        ).toBe('test-dom');
+        expect(
+            Blockly.Xml.domToWorkspace.mock.calls[0][1]
+        ).toBe(playground);
     });
 })
 

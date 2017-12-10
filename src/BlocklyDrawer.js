@@ -38,8 +38,17 @@ class BlocklyDrawer extends Component {
         { toolbox: this.toolbox }
       );
   
+      if (this.props.workspaceXML) {
+        Blockly.Xml.domToWorkspace(
+          Blockly.Xml.textToDom(
+            this.props.workspaceXML
+          ),
+          workspacePlayground
+        );
+      }
+      
       Blockly.svgResize(workspacePlayground);
-  
+
       workspacePlayground.addChangeListener(() => {
         const code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
         const xml = Blockly.Xml.workspaceToDom(workspacePlayground);
@@ -106,6 +115,7 @@ class BlocklyDrawer extends Component {
 BlocklyDrawer.defaultProps = {
   onChange: () => {},
   tools: [],
+  workspaceXML: '',
 };
 
 BlocklyDrawer.propTypes = {
@@ -119,7 +129,8 @@ BlocklyDrawer.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  workspaceXML: PropTypes.string,
 };
 
 styles = {

@@ -69,6 +69,10 @@ var BlocklyDrawer = function (_Component) {
 
         var workspacePlayground = _browser2.default.inject(this.content, { toolbox: this.toolbox });
 
+        if (this.props.workspaceXML) {
+          _browser2.default.Xml.domToWorkspace(_browser2.default.Xml.textToDom(this.props.workspaceXML), workspacePlayground);
+        }
+
         _browser2.default.svgResize(workspacePlayground);
 
         workspacePlayground.addChangeListener(function () {
@@ -144,7 +148,8 @@ var BlocklyDrawer = function (_Component) {
 
 BlocklyDrawer.defaultProps = {
   onChange: function onChange() {},
-  tools: []
+  tools: [],
+  workspaceXML: ''
 };
 
 BlocklyDrawer.propTypes = {
@@ -155,7 +160,8 @@ BlocklyDrawer.propTypes = {
     generator: _propTypes2.default.func
   })).isRequired,
   onChange: _propTypes2.default.func,
-  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node])
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]),
+  workspaceXML: _propTypes2.default.string
 };
 
 styles = {
