@@ -44,7 +44,7 @@ var BlocklyToolbox = function BlocklyToolbox(props) {
     _ToolBoxTagsComponents.Xml,
     {
       style: styles.toolbox,
-      ref: props.onRef
+      onRef: props.onRef
     },
     elements,
     props.children
