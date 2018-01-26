@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from '../index';
+import Drawer, { Category } from '../index';
 import renderer from 'react-test-renderer';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow, mount, render } from 'enzyme';
@@ -39,7 +39,7 @@ describe('BlocklyDrawerComponent', () => {
     it('renders correctly when predefined categories are passed', () => {
         const comp = mount(
             <Drawer>
-                <category name="Functions" custom="PROCEDURE"></category>
+                <Category name="Functions" custom="PROCEDURE"></Category>
             </Drawer>
         );
 

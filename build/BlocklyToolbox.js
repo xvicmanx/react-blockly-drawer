@@ -12,6 +12,8 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _ToolBoxTagsComponents = require('./ToolBoxTagsComponents');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = null;
@@ -26,10 +28,10 @@ var BlocklyToolbox = function BlocklyToolbox(props) {
 
   var elements = Object.keys(groupedByCategory).map(function (key) {
     var blocks = groupedByCategory[key].map(function (type) {
-      return _react2.default.createElement('block', { type: type, key: type });
+      return _react2.default.createElement(_ToolBoxTagsComponents.Block, { type: type, key: type });
     });
     return _react2.default.createElement(
-      'category',
+      _ToolBoxTagsComponents.Category,
       {
         key: key,
         name: key
@@ -39,7 +41,7 @@ var BlocklyToolbox = function BlocklyToolbox(props) {
   });
 
   return _react2.default.createElement(
-    'xml',
+    _ToolBoxTagsComponents.Xml,
     {
       style: styles.toolbox,
       ref: props.onRef

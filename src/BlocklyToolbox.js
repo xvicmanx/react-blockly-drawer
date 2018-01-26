@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Block,
+  Xml,
+  Category
+} from './ToolBoxTagsComponents';
 
 let styles = null;
 
@@ -16,26 +21,26 @@ const BlocklyToolbox = (props) => {
 
   const elements = Object.keys(groupedByCategory).map((key) => {
     const blocks = groupedByCategory[key].map((type) => {
-      return <block type={type} key={type} />;
+      return <Block type={type} key={type} />;
     });
     return (
-      <category
+      <Category
         key={key}
         name={key}
       >
         {blocks}
-      </category>
+      </Category>
     );
   });
 
   return (
-    <xml
+    <Xml
       style={styles.toolbox}
-      ref={props.onRef}
+      onRef={props.onRef}
     >
       {elements}
       {props.children}
-    </xml>
+    </Xml>
   );
 };
 
