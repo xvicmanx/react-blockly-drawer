@@ -11,7 +11,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Blockly from 'node-blockly/browser'; 
 
-import BlocklyDrawer from 'react-blockly-drawer';
+import BlocklyDrawer, { Block, Category } from 'react-blockly-drawer';
   
   const helloWorld =  {
     name: 'HelloWorld',
@@ -47,11 +47,11 @@ import BlocklyDrawer from 'react-blockly-drawer';
         console.log(code, workspace);
       }}
     >
-      <category name="Variables" custom="VARIABLE" />
-      <category name="Values">
-        <block type="math_number" />
-        <block type="text" />
-      </category>
+      <Category name="Variables" custom="VARIABLE" />
+      <Category name="Values">
+        <Block type="math_number" />
+        <Block type="text" />
+      </Category>
     </BlocklyDrawer>,
     document.getElementById('root')
 );
@@ -69,11 +69,11 @@ Event listener to the workspace change.  Two arguments are passed to this callba
 Blockly predefined blocks/tools can be passed as children of this component.
 For example, the following content could be passed.
 ```xml
-<category name="Variables" custom="VARIABLE" />
-<category name="Values">
-  <block type="math_number" />
-  <block type="text" />
-</category>
+<Category name="Variables" custom="VARIABLE" />
+<Category name="Values">
+  <Block type="math_number" />
+  <Block type="text" />
+</Category>
 ```
 
 #### `workspaceXML`: string [optional]
