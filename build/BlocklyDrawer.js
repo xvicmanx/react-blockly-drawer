@@ -67,19 +67,19 @@ var BlocklyDrawer = function (_Component) {
         window.addEventListener('resize', this.onResize, false);
         this.onResize();
 
-        var workspacePlayground = _browser2.default.inject(this.content, { toolbox: this.toolbox });
+        this.workspacePlayground = _browser2.default.inject(this.content, { toolbox: this.toolbox, ...this.props.injectOptions });
 
         if (this.props.workspaceXML) {
-          _browser2.default.Xml.domToWorkspace(_browser2.default.Xml.textToDom(this.props.workspaceXML), workspacePlayground);
+          _browser2.default.Xml.domToWorkspace(_browser2.default.Xml.textToDom(this.props.workspaceXML), this.workspacePlayground);
         }
 
-        _browser2.default.svgResize(workspacePlayground);
+        _browser2.default.svgResize(this.workspacePlayground);
 
-        workspacePlayground.addChangeListener(function () {
-          var code = _browser2.default.JavaScript.workspaceToCode(workspacePlayground);
-          var xml = _browser2.default.Xml.workspaceToDom(workspacePlayground);
+        this.workspacePlayground.addChangeListener(function () {
+        //  var code = _browser2.default.JavaScript.workspaceToCode(workspacePlayground);
+          var xml = _browser2.default.Xml.workspaceToDom(_this2.workspacePlayground);
           var xmlText = _browser2.default.Xml.domToText(xml);
-          _this2.props.onChange(code, xmlText);
+          _this2.props.onChange(xmlText);
         });
       }
     }
@@ -87,6 +87,12 @@ var BlocklyDrawer = function (_Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       initTools(nextProps.tools);
+      this.workspacePlayground.clear()
+      if (nextProps.workspaceXML) {
+          _browser2.default.Xml.domToWorkspace(
+              _browser2.default.Xml.textToDom(nextProps.workspaceXML),
+              this.workspacePlayground);
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -149,7 +155,8 @@ var BlocklyDrawer = function (_Component) {
 BlocklyDrawer.defaultProps = {
   onChange: function onChange() {},
   tools: [],
-  workspaceXML: ''
+  workspaceXML: '',
+  injectOptions: {}
 };
 
 BlocklyDrawer.propTypes = {
@@ -161,7 +168,8 @@ BlocklyDrawer.propTypes = {
   })).isRequired,
   onChange: _propTypes2.default.func,
   children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]),
-  workspaceXML: _propTypes2.default.string
+  workspaceXML: _propTypes2.default.string,
+  injectOptions: _propTypes2.default.object
 };
 
 styles = {
