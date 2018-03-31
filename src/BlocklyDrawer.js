@@ -35,7 +35,10 @@ class BlocklyDrawer extends Component {
   
       const workspacePlayground = Blockly.inject(
         this.content,
-        { toolbox: this.toolbox }
+        Object.assign(
+            { toolbox: this.toolbox },
+            this.props.injectOptions
+        )
       );
   
       if (this.props.workspaceXML) {
@@ -116,6 +119,7 @@ BlocklyDrawer.defaultProps = {
   onChange: () => {},
   tools: [],
   workspaceXML: '',
+  injectOptions: {},
 };
 
 BlocklyDrawer.propTypes = {
@@ -131,6 +135,7 @@ BlocklyDrawer.propTypes = {
     PropTypes.node
   ]),
   workspaceXML: PropTypes.string,
+  injectOptions: PropTypes.object,
 };
 
 styles = {

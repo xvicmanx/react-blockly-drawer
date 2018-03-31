@@ -67,7 +67,7 @@ var BlocklyDrawer = function (_Component) {
         window.addEventListener('resize', this.onResize, false);
         this.onResize();
 
-        this.workspacePlayground = _browser2.default.inject(this.content, { toolbox: this.toolbox, ...this.props.injectOptions });
+        var workspacePlayground = _browser2.default.inject(this.content, Object.assign({ toolbox: this.toolbox }, this.props.injectOptions));
 
         if (this.props.workspaceXML) {
           _browser2.default.Xml.domToWorkspace(_browser2.default.Xml.textToDom(this.props.workspaceXML), this.workspacePlayground);

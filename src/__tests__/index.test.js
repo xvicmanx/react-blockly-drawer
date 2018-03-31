@@ -143,5 +143,14 @@ describe('BlocklyDrawerComponent', () => {
             Blockly.Xml.domToWorkspace.mock.calls[0][1]
         ).toBe(playground);
     });
+
+    it('passes injectOptions to inject', () => {
+        const comp = mount(
+            <Drawer
+                injectOptions={{foo: 42}}
+            />
+        );
+        expect(Blockly.inject.mock.calls[0][1].foo).toBe(42);
+    });
 })
 
