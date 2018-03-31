@@ -70,16 +70,16 @@ var BlocklyDrawer = function (_Component) {
         var workspacePlayground = _browser2.default.inject(this.content, Object.assign({ toolbox: this.toolbox }, this.props.injectOptions));
 
         if (this.props.workspaceXML) {
-          _browser2.default.Xml.domToWorkspace(_browser2.default.Xml.textToDom(this.props.workspaceXML), workspacePlayground);
+          _browser2.default.Xml.domToWorkspace(_browser2.default.Xml.textToDom(this.props.workspaceXML), this.workspacePlayground);
         }
 
-        _browser2.default.svgResize(workspacePlayground);
+        _browser2.default.svgResize(this.workspacePlayground);
 
-        workspacePlayground.addChangeListener(function () {
-          var code = _browser2.default.JavaScript.workspaceToCode(workspacePlayground);
-          var xml = _browser2.default.Xml.workspaceToDom(workspacePlayground);
+        this.workspacePlayground.addChangeListener(function () {
+        //  var code = _browser2.default.JavaScript.workspaceToCode(workspacePlayground);
+          var xml = _browser2.default.Xml.workspaceToDom(_this2.workspacePlayground);
           var xmlText = _browser2.default.Xml.domToText(xml);
-          _this2.props.onChange(code, xmlText);
+          _this2.props.onChange(xmlText);
         });
       }
     }
@@ -87,6 +87,12 @@ var BlocklyDrawer = function (_Component) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       initTools(nextProps.tools);
+      this.workspacePlayground.clear()
+      if (nextProps.workspaceXML) {
+          _browser2.default.Xml.domToWorkspace(
+              _browser2.default.Xml.textToDom(nextProps.workspaceXML),
+              this.workspacePlayground);
+      }
     }
   }, {
     key: 'componentWillUnmount',
