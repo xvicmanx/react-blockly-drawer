@@ -152,5 +152,72 @@ describe('BlocklyDrawerComponent', () => {
         );
         expect(Blockly.inject.mock.calls[0][1].foo).toBe(42);
     });
+
+    it('allows redefining a language', () => {
+        const onChange = jest.fn();
+        const mockLanguage = {
+            workspaceToCode: jest.fn().mockReturnValue('more-test-code')
+        }
+        const comp = mount(<Drawer onChange={onChange} language={mockLanguage} />);
+
+        expect(
+            mockLanguage.workspaceToCode.mock.calls.length
+        ).toBe(1);
+        expect(
+            Blockly.Xml.workspaceToDom.mock.calls.length
+        ).toBe(1);
+        expect(
+            Blockly.Xml.domToText.mock.calls.length
+        ).toBe(1);
+        expect(
+            onChange.mock.calls.length
+        ).toBe(1);
+
+        expect(
+            mockLanguage.workspaceToCode.mock.calls[0][0]
+        ).toBe(playground);
+        expect(
+            Blockly.Xml.workspaceToDom.mock.calls[0][0]
+        ).toBe(playground);
+        expect(
+            Blockly.Xml.domToText.mock.calls[0][0]
+        ).toBe('test-xml');
+
+        expect(
+            onChange.mock.calls[0][0]
+        ).toBe('more-test-code');
+        expect(
+            onChange.mock.calls[0][1]
+        ).toBe('test-dom-text');
+    });
+
+    it('allows removing a language', () => {
+        const onChange = jest.fn();
+        const comp = mount(<Drawer onChange={onChange} language={null} />);
+
+        expect(
+            Blockly.Xml.workspaceToDom.mock.calls.length
+        ).toBe(1);
+        expect(
+            Blockly.Xml.domToText.mock.calls.length
+        ).toBe(1);
+        expect(
+            onChange.mock.calls.length
+        ).toBe(1);
+
+        expect(
+            Blockly.Xml.workspaceToDom.mock.calls[0][0]
+        ).toBe(playground);
+        expect(
+            Blockly.Xml.domToText.mock.calls[0][0]
+        ).toBe('test-xml');
+
+        expect(
+            onChange.mock.calls[0][0]
+        ).toBe(null);
+        expect(
+            onChange.mock.calls[0][1]
+        ).toBe('test-dom-text');
+    });
 })
 

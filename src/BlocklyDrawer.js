@@ -32,29 +32,31 @@ class BlocklyDrawer extends Component {
         false
       );
       this.onResize();
-  
-      const workspacePlayground = Blockly.inject(
+
+      this.workspacePlayground = Blockly.inject(
         this.content,
         Object.assign(
             { toolbox: this.toolbox },
             this.props.injectOptions
         )
       );
-  
+
       if (this.props.workspaceXML) {
         Blockly.Xml.domToWorkspace(
           Blockly.Xml.textToDom(
             this.props.workspaceXML
           ),
-          workspacePlayground
+          this.workspacePlayground
         );
       }
-      
-      Blockly.svgResize(workspacePlayground);
 
-      workspacePlayground.addChangeListener(() => {
-        const code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
-        const xml = Blockly.Xml.workspaceToDom(workspacePlayground);
+      Blockly.svgResize(this.workspacePlayground);
+
+      this.workspacePlayground.addChangeListener(() => {
+        const code = this.props.language
+          ? this.props.language.workspaceToCode(this.workspacePlayground)
+          : null;
+        const xml = Blockly.Xml.workspaceToDom(this.workspacePlayground);
         const xmlText = Blockly.Xml.domToText(xml);
         this.props.onChange(code, xmlText);
       });
@@ -63,6 +65,11 @@ class BlocklyDrawer extends Component {
 
   componentWillReceiveProps(nextProps) {
     initTools(nextProps.tools);
+    this.workspacePlayground.clear();
+    if (nextProps.workspaceXML) {
+      const dom = Blockly.Xml.textToDom(nextProps.workspaceXML);
+      Blockly.Xml.domToWorkspace(dom, this.workspacePlayground);
+    }
   }
 
   componentWillUnmount() {
@@ -120,6 +127,7 @@ BlocklyDrawer.defaultProps = {
   tools: [],
   workspaceXML: '',
   injectOptions: {},
+  language: Blockly.JavaScript,
 };
 
 BlocklyDrawer.propTypes = {
@@ -136,6 +144,7 @@ BlocklyDrawer.propTypes = {
   ]),
   workspaceXML: PropTypes.string,
   injectOptions: PropTypes.object,
+  language: PropTypes.object,
 };
 
 styles = {
