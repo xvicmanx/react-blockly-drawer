@@ -62,8 +62,16 @@ import BlocklyDrawer, { Block, Category } from 'react-blockly-drawer';
 
 #### `onChange`: function (code, workspaceXML) {}
 Event listener to the workspace change.  Two arguments are passed to this callback:
-- `code` that is the generated code of your created program.
-- `workspaceXML` that is an XML text that corresponds to the content of the workspace.
+- `code` is the generated code of your created program (see the property
+  `language`);
+- `workspaceXML` is an XML text that corresponds to the content of the workspace.
+
+#### `language`: object [optional]
+A language generator, either one of the languages described in the
+[Blockly documentation on code generation](https://developers.google.com/blockly/guides/configure/web/code-generators) or
+a custom object with method `workspaceToCode`. Default generator is
+`Blockly.Javascript`. If `language` is set to `null`, no code is generated and
+the first argument passed to the `onChange` function, `code` will be `null`.
 
 #### `children`:  node(s)
 Blockly predefined blocks/tools can be passed as children of this component.
