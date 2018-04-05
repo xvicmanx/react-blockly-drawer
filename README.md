@@ -79,6 +79,9 @@ For example, the following content could be passed.
 #### `workspaceXML`: string [optional]
 Workspace XML initial content. It is no necessary to pass it if you want a new/empty workspace.
 
+#### `injectOptions`: object [optional]
+Options for the workspace. See [blocklyDocumentation](https://developers.google.com/blockly/guides/get-started/web#configuration) for details.
+
 #### `tools`: array [optional]
 An array of your custom block/tools.
 Each item should have the following properties:
