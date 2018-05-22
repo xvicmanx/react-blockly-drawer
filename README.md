@@ -46,6 +46,15 @@ import BlocklyDrawer, { Block, Category } from 'react-blockly-drawer';
       onChange={(code, workspace) => {
         console.log(code, workspace);
       }}
+      appearance={
+        {
+          categories: {
+            Demo: {
+              colour: '270'
+            },
+          },
+        }
+      }
     >
       <Category name="Variables" custom="VARIABLE" />
       <Category name="Values">

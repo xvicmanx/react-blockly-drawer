@@ -114,6 +114,7 @@ class BlocklyDrawer extends Component {
             this.toolbox = toolbox;
           }}
           tools={this.props.tools}
+          appearance={this.props.appearance}
         >
           {this.props.children}
         </BlocklyToolbox>
@@ -128,6 +129,7 @@ BlocklyDrawer.defaultProps = {
   workspaceXML: '',
   injectOptions: {},
   language: Blockly.JavaScript,
+  appearance: {},
 };
 
 BlocklyDrawer.propTypes = {
@@ -145,6 +147,7 @@ BlocklyDrawer.propTypes = {
   workspaceXML: PropTypes.string,
   injectOptions: PropTypes.object,
   language: PropTypes.object,
+  appearance: PropTypes.object,
 };
 
 styles = {

@@ -9,6 +9,7 @@ import {
 let styles = null;
 
 const BlocklyToolbox = (props) => {
+  const appearance = props.appearance || {} ;
   const groupedByCategory = props.tools.reduce(
     (accumulated, item) => {
       const result = accumulated;
@@ -23,10 +24,13 @@ const BlocklyToolbox = (props) => {
     const blocks = groupedByCategory[key].map((type) => {
       return <Block type={type} key={type} />;
     });
+    const categoryAppearance = appearance && appearance.categories &&
+      appearance.categories[key] || {};
     return (
       <Category
+        {...categoryAppearance}
         key={key}
-        name={key}
+        name={key} 
       >
         {blocks}
       </Category>
@@ -46,6 +50,7 @@ const BlocklyToolbox = (props) => {
 
 BlocklyToolbox.defaultProps = {
   onRef: () => {},
+  appearance: {},
 };
 
 BlocklyToolbox.propTypes = {
@@ -54,7 +59,8 @@ BlocklyToolbox.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]),
+  appearance: PropTypes.object,
 };
 
 styles = {

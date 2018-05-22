@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -19,6 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var styles = null;
 
 var BlocklyToolbox = function BlocklyToolbox(props) {
+  var appearance = props.appearance || {};
   var groupedByCategory = props.tools.reduce(function (accumulated, item) {
     var result = accumulated;
     result[item.category] = result[item.category] || [];
@@ -30,12 +33,13 @@ var BlocklyToolbox = function BlocklyToolbox(props) {
     var blocks = groupedByCategory[key].map(function (type) {
       return _react2.default.createElement(_ToolBoxTagsComponents.Block, { type: type, key: type });
     });
+    var categoryAppearance = appearance && appearance.categories && appearance.categories[key] || {};
     return _react2.default.createElement(
       _ToolBoxTagsComponents.Category,
-      {
+      _extends({}, categoryAppearance, {
         key: key,
         name: key
-      },
+      }),
       blocks
     );
   });
@@ -52,13 +56,15 @@ var BlocklyToolbox = function BlocklyToolbox(props) {
 };
 
 BlocklyToolbox.defaultProps = {
-  onRef: function onRef() {}
+  onRef: function onRef() {},
+  appearance: {}
 };
 
 BlocklyToolbox.propTypes = {
   onRef: _propTypes2.default.func,
   tools: _propTypes2.default.arrayOf(Object).isRequired,
-  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node])
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]),
+  appearance: _propTypes2.default.object
 };
 
 styles = {

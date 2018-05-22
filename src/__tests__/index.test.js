@@ -64,6 +64,33 @@ describe('BlocklyDrawerComponent', () => {
         expect(comp.html()).toMatchSnapshot();
     });
 
+    it('renders correctly when appearance is passed', () => {
+        const comp = mount(
+            <Drawer
+                tools={[
+                    {
+                        name: 'TestName',
+                        category: 'TestCategory',
+                        block: {
+                            init: () => { },
+                        },
+                        generator: () => { },
+                    }
+                ]}
+                appearance={
+                    {
+                        categories: {
+                            TestCategory: {
+                                colour: 'blue'
+                            },
+                        },
+                    }
+                } />
+        );
+
+        expect(comp.html()).toMatchSnapshot();
+    });
+
 
     it('is initialized correctly', () => {
         const onChange = jest.fn();
@@ -147,7 +174,7 @@ describe('BlocklyDrawerComponent', () => {
     it('passes injectOptions to inject', () => {
         const comp = mount(
             <Drawer
-                injectOptions={{foo: 42}}
+                injectOptions={{ foo: 42 }}
             />
         );
         expect(Blockly.inject.mock.calls[0][1].foo).toBe(42);

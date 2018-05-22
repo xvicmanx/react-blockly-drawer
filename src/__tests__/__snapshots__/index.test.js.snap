@@ -2,6 +2,8 @@
 
 exports[`BlocklyDrawerComponent initializes correctly when initial workspace is passed 1`] = `"<div style=\\"min-height: 400px;\\"><div style=\\"position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;\\"></div><xml style=\\"display: none;\\"></xml></div>"`;
 
+exports[`BlocklyDrawerComponent renders correctly when appearance is passed 1`] = `"<div style=\\"min-height: 400px;\\"><div style=\\"position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;\\"></div><xml style=\\"display: none;\\"><category colour=\\"blue\\" name=\\"TestCategory\\"><block type=\\"TestName\\"></block></category></xml></div>"`;
+
 exports[`BlocklyDrawerComponent renders correctly when no tools nor predefined categories are passed 1`] = `
 <div
   style={

@@ -140,7 +140,8 @@ var BlocklyDrawer = function (_Component) {
             onRef: function onRef(toolbox) {
               _this3.toolbox = toolbox;
             },
-            tools: this.props.tools
+            tools: this.props.tools,
+            appearance: this.props.appearance
           },
           this.props.children
         )
@@ -156,7 +157,8 @@ BlocklyDrawer.defaultProps = {
   tools: [],
   workspaceXML: '',
   injectOptions: {},
-  language: _browser2.default.JavaScript
+  language: _browser2.default.JavaScript,
+  appearance: {}
 };
 
 BlocklyDrawer.propTypes = {
@@ -170,7 +172,8 @@ BlocklyDrawer.propTypes = {
   children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]),
   workspaceXML: _propTypes2.default.string,
   injectOptions: _propTypes2.default.object,
-  language: _propTypes2.default.object
+  language: _propTypes2.default.object,
+  appearance: _propTypes2.default.object
 };
 
 styles = {
