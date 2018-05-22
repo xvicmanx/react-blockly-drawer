@@ -99,6 +99,26 @@ Workspace XML initial content. It is no necessary to pass it if you want a new/e
 #### `injectOptions`: object [optional]
 Options for the workspace. See [blocklyDocumentation](https://developers.google.com/blockly/guides/get-started/web#configuration) for details.
 
+#### `appearance`: object [optional]
+Options for styling.
+In order to style the block categories an object containing the `categories`
+property should be passed. This property categories is an object that has
+the categories names as keys and the values contain the styling properties for that block category.
+For example: 
+
+```js
+{
+  categories: {
+    Demo: {
+      colour: '270'
+    },
+  },
+}
+```
+This way the category `Demo` is colored.
+
+See [blocklyDocumentation](https://developers.google.com/blockly/guides/get-started/web#configuration) for block categories styling. for details.
+
 #### `tools`: array [optional]
 An array of your custom block/tools.
 Each item should have the following properties:
