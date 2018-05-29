@@ -133,6 +133,12 @@ Each item should have the following properties:
  
  + ##### `generator`: function
  + Generator's definition as it is done in Blockly.
+
+ + ##### `className`: string
+ + Component's class
+
+ + ##### `style`: object
+ + Component's style
  
  
  For example:

@@ -96,9 +96,15 @@ class BlocklyDrawer extends Component {
   }
 
   render() {
+    const wrapperStyle = Object.assign(
+      {},
+      styles.wrapper,
+      this.props.style,
+    );
     return (
       <div
-        style={styles.wrapper}
+        className={this.props.className}
+        style={wrapperStyle}
         ref={(wrapper) => {
           this.wrapper = wrapper;
         }}
@@ -130,6 +136,8 @@ BlocklyDrawer.defaultProps = {
   injectOptions: {},
   language: Blockly.JavaScript,
   appearance: {},
+  className: '',
+  style: {},
 };
 
 BlocklyDrawer.propTypes = {
@@ -148,6 +156,8 @@ BlocklyDrawer.propTypes = {
   injectOptions: PropTypes.object,
   language: PropTypes.object,
   appearance: PropTypes.object,
+  className: PropTypes.string,
+  style: PropTypes.object,
 };
 
 styles = {
