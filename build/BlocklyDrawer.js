@@ -120,10 +120,12 @@ var BlocklyDrawer = function (_Component) {
     value: function render() {
       var _this3 = this;
 
+      var wrapperStyle = Object.assign({}, styles.wrapper, this.props.style);
       return _react2.default.createElement(
         'div',
         {
-          style: styles.wrapper,
+          className: this.props.className,
+          style: wrapperStyle,
           ref: function ref(wrapper) {
             _this3.wrapper = wrapper;
           }
@@ -158,7 +160,9 @@ BlocklyDrawer.defaultProps = {
   workspaceXML: '',
   injectOptions: {},
   language: _browser2.default.JavaScript,
-  appearance: {}
+  appearance: {},
+  className: '',
+  style: {}
 };
 
 BlocklyDrawer.propTypes = {
@@ -173,7 +177,9 @@ BlocklyDrawer.propTypes = {
   workspaceXML: _propTypes2.default.string,
   injectOptions: _propTypes2.default.object,
   language: _propTypes2.default.object,
-  appearance: _propTypes2.default.object
+  appearance: _propTypes2.default.object,
+  className: _propTypes2.default.string,
+  style: _propTypes2.default.object
 };
 
 styles = {
