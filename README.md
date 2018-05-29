@@ -119,6 +119,12 @@ This way the category `Demo` is colored.
 
 See [blocklyDocumentation](https://developers.google.com/blockly/guides/get-started/web#configuration) for block categories styling. for details.
 
+ #### `className`: string
+Component's class
+
+ #### `style`: object
+ Component's style
+
 #### `tools`: array [optional]
 An array of your custom block/tools.
 Each item should have the following properties:
@@ -133,12 +139,6 @@ Each item should have the following properties:
  
  + ##### `generator`: function
  + Generator's definition as it is done in Blockly.
-
- + ##### `className`: string
- + Component's class
-
- + ##### `style`: object
- + Component's style
  
  
  For example:
