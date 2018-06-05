@@ -101,17 +101,10 @@ var BlocklyDrawer = function (_Component) {
   }, {
     key: 'onResize',
     value: function onResize() {
-      var x = 0;
-      var y = 0;
       var element = this.wrapper;
       do {
-        x += element.offsetLeft;
-        y += element.offsetTop;
         element = element.offsetParent;
       } while (element);
-
-      this.content.style.left = x + 'px';
-      this.content.style.top = y + 'px';
       this.content.style.width = this.wrapper.offsetWidth + 'px';
       this.content.style.height = this.wrapper.offsetHeight + 'px';
     }
@@ -184,7 +177,8 @@ BlocklyDrawer.propTypes = {
 
 styles = {
   wrapper: {
-    minHeight: '400px'
+    minHeight: '400px',
+    position: 'relative'
   },
   content: {
     position: 'absolute'

@@ -136,7 +136,7 @@ describe('BlocklyDrawerComponent', () => {
 
         expect(
             '' + Blockly.inject.mock.calls[0][0].outerHTML
-        ).toBe("<div style=\"position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;\"></div>");
+        ).toBe("<div style=\"position: absolute; width: 0px; height: 0px;\"></div>");
         expect(
             {
                 toolbox: Blockly.inject.mock.calls[0][1].toolbox.outerHTML

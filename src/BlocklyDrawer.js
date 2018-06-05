@@ -80,17 +80,10 @@ class BlocklyDrawer extends Component {
   }
 
   onResize() {
-    let x = 0;
-    let y = 0;
     let element = this.wrapper;
     do {
-      x += element.offsetLeft;
-      y += element.offsetTop;
       element = element.offsetParent;
     } while (element);
-
-    this.content.style.left = `${x}px`;
-    this.content.style.top = `${y}px`;
     this.content.style.width = `${this.wrapper.offsetWidth}px`;
     this.content.style.height = `${this.wrapper.offsetHeight}px`;
   }
@@ -163,6 +156,7 @@ BlocklyDrawer.propTypes = {
 styles = {
   wrapper: {
     minHeight: '400px',
+    position: 'relative',
   },
   content: {
     position: 'absolute',
