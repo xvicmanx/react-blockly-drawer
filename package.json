@@ -1,6 +1,6 @@
 {
   "name": "react-blockly-drawer",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "A React component to play with blockly.",
   "main": "build/index.js",
   "scripts": {

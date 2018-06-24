@@ -114,6 +114,15 @@ class BlocklyDrawer extends Component {
           }}
           tools={this.props.tools}
           appearance={this.props.appearance}
+          onUpdate={() => {
+            if (
+              this.workspacePlayground
+              && this.toolbox.outerHTML
+            ) {
+              this.workspacePlayground
+                .updateToolbox(this.toolbox.outerHTML);
+            }
+          }}
         >
           {this.props.children}
         </BlocklyToolbox>
