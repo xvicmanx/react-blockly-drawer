@@ -117,7 +117,7 @@ class BlocklyDrawer extends Component {
           onUpdate={() => {
             if (
               this.workspacePlayground
-              && this.toolbox.outerHTML
+              && this.toolbox
             ) {
               this.workspacePlayground
                 .updateToolbox(this.toolbox.outerHTML);

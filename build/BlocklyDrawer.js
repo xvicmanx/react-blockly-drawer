@@ -138,7 +138,7 @@ var BlocklyDrawer = function (_Component) {
             tools: this.props.tools,
             appearance: this.props.appearance,
             onUpdate: function onUpdate() {
-              if (_this3.workspacePlayground && _this3.toolbox.outerHTML) {
+              if (_this3.workspacePlayground && _this3.toolbox) {
                 _this3.workspacePlayground.updateToolbox(_this3.toolbox.outerHTML);
               }
             }
