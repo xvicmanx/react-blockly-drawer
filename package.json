@@ -28,7 +28,7 @@
   "author": "Victor Trejo",
   "license": "ISC",
   "dependencies": {
-    "node-blockly": "^1.0.31",
+    "node-blockly": "^1.0.35",
     "prop-types": "^15.6.0",
     "react": "^16.2.0"
   },
