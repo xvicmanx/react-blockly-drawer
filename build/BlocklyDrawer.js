@@ -33,9 +33,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var styles = null;
 
 var initTools = function initTools(tools) {
+  var language = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _browser2.default.JavaScript;
+
   tools.forEach(function (tool) {
     _browser2.default.Blocks[tool.name] = tool.block;
-    _browser2.default.JavaScript[tool.name] = tool.generator;
+    language[tool.name] = tool.generator;
   });
 };
 
@@ -56,7 +58,7 @@ var BlocklyDrawer = function (_Component) {
   _createClass(BlocklyDrawer, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      initTools(this.props.tools);
+      initTools(this.props.tools, this.props.language);
     }
   }, {
     key: 'componentDidMount',
