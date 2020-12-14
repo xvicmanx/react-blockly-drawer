@@ -46,6 +46,7 @@ import BlocklyDrawer, { Block, Category } from 'react-blockly-drawer';
       onChange={(code, workspace) => {
         console.log(code, workspace);
       }}
+      language={Blockly.JavaScript}
       appearance={
         {
           categories: {

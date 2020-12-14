@@ -5,10 +5,10 @@ import BlocklyToolbox from './BlocklyToolbox';
 
 let styles = null;
 
-const initTools = (tools) => {
+const initTools = (tools, language=Blockly.JavaScript) => {
   tools.forEach((tool) => {
     Blockly.Blocks[tool.name] = tool.block;
-    Blockly.JavaScript[tool.name] = tool.generator;
+    language[tool.name] = tool.generator;
   });
 };
 
@@ -21,7 +21,7 @@ class BlocklyDrawer extends Component {
   }
 
   componentWillMount() {
-    initTools(this.props.tools);
+    initTools(this.props.tools, this.props.language);
   }
 
   componentDidMount() {
