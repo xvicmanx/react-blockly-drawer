@@ -6,15 +6,15 @@
   "scripts": {
     "dev": "watch 'npm run build' src",
     "build": "babel src -d build",
-    "test": "jest --env=jsdom --no-watchman",
+    "test": "jest ./src --env=jsdom --no-watchman",
     "test-watch": "npm test -- --watch",
     "prepublish": "npm run build",
     "release": "np"
   },
   "babel": {
     "presets": [
-      "latest",
-      "react"
+      "@babel/preset-env",
+      "@babel/preset-react"
     ]
   },
   "repository": {
@@ -33,15 +33,16 @@
     "react": "^17.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "jest": "^26.6.3",
     "np": "^2.18.2",
-    "react-dom": "^16.14.0",
-    "react-test-renderer": "^16.2.0",
+    "react-dom": "^17.0.1",
+    "react-test-renderer": "^17.0.1",
     "watch": "^1.0.2"
   }
 }

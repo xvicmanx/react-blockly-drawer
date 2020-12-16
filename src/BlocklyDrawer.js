@@ -20,11 +20,9 @@ class BlocklyDrawer extends Component {
     this.content = null;
   }
 
-  componentWillMount() {
-    initTools(this.props.tools, this.props.language);
-  }
-
   componentDidMount() {
+    initTools(this.props.tools, this.props.language);
+
     if (this.wrapper) {
       window.addEventListener(
         'resize',
@@ -63,11 +61,12 @@ class BlocklyDrawer extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    initTools(nextProps.tools);
+  componentDidUpdate(prevProps) {
+    initTools(this.props.tools);
     this.workspacePlayground.clear();
-    if (nextProps.workspaceXML) {
-      const dom = Blockly.Xml.textToDom(nextProps.workspaceXML);
+
+    if (this.props.workspaceXML) {
+      const dom = Blockly.Xml.textToDom(this.props.workspaceXML);
       Blockly.Xml.domToWorkspace(dom, this.workspacePlayground);
     }
   }

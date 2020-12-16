@@ -1,17 +1,26 @@
 import React from 'react';
 import Drawer, { Category } from '../index';
-import renderer from 'react-test-renderer';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, { shallow, mount, render } from 'enzyme';
+import { create, act, render } from 'react-test-renderer';
 
 jest.mock('node-blockly/browser');
 
 import Blockly from 'node-blockly/browser';
 
-Enzyme.configure({ adapter: new Adapter() })
-
 describe('BlocklyDrawerComponent', () => {
     let playground = null;
+    const options = {
+        createNodeMock: (element) => {
+            if (element.type === 'div') {
+                return {
+                    offsetWidth: 10,
+                    offsetHeight: 15,
+                    style: {},
+                };
+            }
+            return null;
+        },
+    };
+
     beforeEach(() => {
         playground = {
             addChangeListener: jest.fn((cb) => { cb(); })
@@ -29,26 +38,25 @@ describe('BlocklyDrawerComponent', () => {
     });
 
     it('renders correctly when no tools nor predefined categories are passed', () => {
-        const tree = renderer
-            .create(<Drawer />)
+        const tree = create(<Drawer />)
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
 
 
     it('renders correctly when predefined categories are passed', () => {
-        const comp = mount(
+        const comp = create(
             <Drawer>
                 <Category name="Functions" custom="PROCEDURE"></Category>
             </Drawer>
         );
 
-        expect(comp.html()).toMatchSnapshot();
+        expect(comp.toJSON()).toMatchSnapshot();
     });
 
 
     it('renders correctly when tools are passed', () => {
-        const comp = mount(
+        const comp = create(
             <Drawer tools={[
                 {
                     name: 'TestName',
@@ -61,11 +69,11 @@ describe('BlocklyDrawerComponent', () => {
             ]} />
         );
 
-        expect(comp.html()).toMatchSnapshot();
+        expect(comp.toJSON()).toMatchSnapshot();
     });
 
     it('renders correctly when appearance is passed', () => {
-        const comp = mount(
+        const comp = create(
             <Drawer
                 tools={[
                     {
@@ -88,13 +96,20 @@ describe('BlocklyDrawerComponent', () => {
                 } />
         );
 
-        expect(comp.html()).toMatchSnapshot();
+        expect(comp.toJSON()).toMatchSnapshot();
     });
 
 
     it('is initialized correctly', () => {
         const onChange = jest.fn();
-        const comp = mount(<Drawer onChange={onChange} />);
+        let comp;
+
+        act(() => {
+            comp = create(
+                <Drawer onChange={onChange} />,
+                options,
+            );
+        });
         expect(
             Blockly.inject.mock.calls.length
         ).toBe(1);
@@ -134,25 +149,31 @@ describe('BlocklyDrawerComponent', () => {
             onChange.mock.calls[0][1]
         ).toBe('test-dom-text');
 
-        expect(
-            '' + Blockly.inject.mock.calls[0][0].outerHTML
-        ).toBe("<div style=\"position: absolute; width: 0px; height: 0px;\"></div>");
-        expect(
-            {
-                toolbox: Blockly.inject.mock.calls[0][1].toolbox.outerHTML
-            }
-        ).toEqual({ toolbox: '<xml style="display: none;"></xml>' });
+        expect(Blockly.inject.mock.calls[0][0]).toEqual({
+            offsetHeight: 15,
+            offsetWidth: 10,
+            style: {
+              height: '15px',
+              width: '10px',
+            },
+        });
+        expect(Blockly.inject.mock.calls[0][1]).toEqual({ toolbox: null });
     });
 
     it('initializes correctly when initial workspace is passed', () => {
         const workspaceXML = '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="HelloWorld" id="gUb!;E2#;hgDD2tP3][/" x="264" y="101"><field name="NAME">sdfsd</field></block></xml>';
-        const comp = mount(
-            <Drawer
-                workspaceXML={workspaceXML}
-            />
-        );
+        let comp;
 
-        expect(comp.html()).toMatchSnapshot();
+        act(() => {
+            comp = create(
+                <Drawer
+                    workspaceXML={workspaceXML}
+                />,
+                options,
+            );
+        });
+
+        expect(comp.toJSON()).toMatchSnapshot();
         expect(
             Blockly.Xml.textToDom.mock.calls.length
         ).toBe(1);
@@ -172,11 +193,16 @@ describe('BlocklyDrawerComponent', () => {
     });
 
     it('passes injectOptions to inject', () => {
-        const comp = mount(
-            <Drawer
-                injectOptions={{ foo: 42 }}
-            />
-        );
+        let comp;
+    
+        act(() => {
+            comp = create(
+                <Drawer
+                    injectOptions={{ foo: 42 }}
+                />,
+                options,
+            );
+        });
         expect(Blockly.inject.mock.calls[0][1].foo).toBe(42);
     });
 
@@ -185,7 +211,10 @@ describe('BlocklyDrawerComponent', () => {
         const mockLanguage = {
             workspaceToCode: jest.fn().mockReturnValue('more-test-code')
         }
-        const comp = mount(<Drawer onChange={onChange} language={mockLanguage} />);
+        let comp;
+        act(() => {
+            comp = create(<Drawer onChange={onChange} language={mockLanguage} />, options);
+        });
 
         expect(
             mockLanguage.workspaceToCode.mock.calls.length
@@ -220,8 +249,10 @@ describe('BlocklyDrawerComponent', () => {
 
     it('allows removing a language', () => {
         const onChange = jest.fn();
-        const comp = mount(<Drawer onChange={onChange} language={null} />);
-
+        let comp;
+        act(() => {
+            comp = create(<Drawer onChange={onChange} language={null} />, options);
+        });
         expect(
             Blockly.Xml.workspaceToDom.mock.calls.length
         ).toBe(1);
