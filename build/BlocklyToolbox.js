@@ -48,12 +48,16 @@ var BlocklyToolbox = function (_React$Component) {
       var props = this.props;
 
       var appearance = props.appearance || {};
-      var groupedByCategory = props.tools.reduce(function (accumulated, item) {
-        var result = accumulated;
-        result[item.category] = result[item.category] || [];
-        result[item.category].push(item.name);
-        return result;
-      }, {});
+      var noCategoryItems = [];
+      var groupedByCategory = {};
+      props.tools.forEach(function (item) {
+        if (item.category) {
+          groupedByCategory[item.category] = groupedByCategory[item.category] || [];
+          groupedByCategory[item.category].push(item.name);
+        } else {
+          noCategoryItems.push(item.name);
+        }
+      });
 
       var elements = Object.keys(groupedByCategory).map(function (key) {
         var blocks = groupedByCategory[key].map(function (type) {
@@ -68,6 +72,10 @@ var BlocklyToolbox = function (_React$Component) {
           }),
           blocks
         );
+      });
+
+      noCategoryItems.forEach(function (name) {
+        elements.push(_react2.default.createElement(_ToolBoxTagsComponents.Block, { type: name, key: name }));
       });
 
       return _react2.default.createElement(

@@ -16,20 +16,19 @@ class BlocklyToolbox extends React.Component {
   render() {
     const { props } = this;
     const appearance = props.appearance || {};
-    const groupedByCategory = props.tools.reduce(
-      (accumulated, item) => {
-        const result = accumulated;
-        result[item.category] = result[item.category] || [];
-        result[item.category].push(item.name);
-        return result;
-      },
-      {}
-    );
+    const noCategoryItems = [];
+    const groupedByCategory = {};
+    props.tools.forEach((item) => {
+      if (item.category) {
+        groupedByCategory[item.category] = groupedByCategory[item.category] || [];
+        groupedByCategory[item.category].push(item.name);
+      } else {
+        noCategoryItems.push(item.name);
+      }
+    });
 
     const elements = Object.keys(groupedByCategory).map((key) => {
-      const blocks = groupedByCategory[key].map((type) => {
-        return <Block type={type} key={type} />;
-      });
+      const blocks = groupedByCategory[key].map((type) => <Block type={type} key={type} />);
       const categoryAppearance = appearance && appearance.categories &&
         appearance.categories[key] || {};
       return (
@@ -41,6 +40,10 @@ class BlocklyToolbox extends React.Component {
           {blocks}
         </Category>
       );
+    });
+
+    noCategoryItems.forEach(name => {
+      elements.push(<Block type={name} key={name} />);
     });
 
     return (
