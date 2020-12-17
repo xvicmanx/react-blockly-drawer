@@ -1,7 +1,7 @@
 # React Blockly Drawer
 A React component to play with Blockly.
 
-[![npm](https://img.shields.io/npm/dt/react-blockly-drawer)]()
+[![npm](https://img.shields.io/npm/dt/react-blockly-drawer)](https://www.npmjs.com/package/react-blockly-drawer)
 [![GitHub license](https://img.shields.io/github/license/xvicmanx/react-blockly-drawer.svg)](https://github.com/xvicmanx/react-blockly-drawer/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/xvicmanx/react-blockly-drawer.svg)](https://GitHub.com/xvicmanx/react-blockly-drawer/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/xvicmanx/react-blockly-drawer.svg)](https://GitHub.com/xvicmanx/react-blockly-drawer/pull/)
