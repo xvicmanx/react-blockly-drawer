@@ -222,6 +222,11 @@ npm run build
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Built with
+
+- [node-blockly](https://ghub.io/node-blockly): Blockly for Node.js and Browser as CommonJS module
+- [prop-types](https://ghub.io/prop-types): Runtime type checking for React props and similar objects.
+- [react](https://ghub.io/react): React is a JavaScript library for building user interfaces.
 
 ## Comments
 Feel free to make any suggestion to improve this component.
