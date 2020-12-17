@@ -1,11 +1,36 @@
 # React Blockly Drawer
-A React component to play with blockly.
-## Example
+A React component to play with Blockly.
+
+[![npm](https://img.shields.io/npm/dt/react-blockly-drawer)]()
+[![GitHub license](https://img.shields.io/github/license/xvicmanx/react-blockly-drawer.svg)](https://github.com/xvicmanx/react-blockly-drawer/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/xvicmanx/react-blockly-drawer.svg)](https://GitHub.com/xvicmanx/react-blockly-drawer/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/xvicmanx/react-blockly-drawer.svg)](https://GitHub.com/xvicmanx/react-blockly-drawer/pull/)
+
+
+## Table of Contents
+
+* [Introduction](#introduction)
+* [Setup](#setup)
+* [Examples](#examples)
+* [Component Properties](#component-properties)
+* [Development](#development)
+* [Contributing](#contributing)
+* [Comments](#comments)
+
+
+## Introduction
+  A React component to play with Blockly.
+
+## Setup
 
 ```shell 
 $ npm install react-blockly-drawer node-blockly --save
 ```
 
+
+## Examples
+
+### Basic Example
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -172,6 +197,31 @@ Each item should have the following properties:
       },
     }
  ```
+ 
+ ## Development
+
+* [Running tests](#running-tests)
+* [Building component](#building-component)
+
+```sh
+git clone git@github.com:xvicmanx/react-blockly-drawer.git
+```
+
+### Running tests
+
+```sh
+npm test
+```
+
+### Building component
+
+```sh
+npm run build
+```
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md)
+
 
 ## Comments
 Feel free to make any suggestion to improve this component.
