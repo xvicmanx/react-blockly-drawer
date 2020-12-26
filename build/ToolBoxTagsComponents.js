@@ -33,14 +33,26 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var Block = function Block(props) {
-  return /*#__PURE__*/_react["default"].createElement('block', props);
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var Block = function Block(p) {
+  var children = p.children,
+      props = _objectWithoutProperties(p, ["children"]);
+
+  props.is = "blockly";
+  return /*#__PURE__*/_react["default"].createElement("block", props, children);
 };
 
 exports.Block = Block;
 
-var Category = function Category(props) {
-  return /*#__PURE__*/_react["default"].createElement('category', props);
+var Category = function Category(p) {
+  var children = p.children,
+      props = _objectWithoutProperties(p, ["children"]);
+
+  props.is = "blockly";
+  return /*#__PURE__*/_react["default"].createElement("category", props, children);
 };
 
 exports.Category = Category;
@@ -67,6 +79,7 @@ var XmlComponent = /*#__PURE__*/function (_Component) {
         }
       });
       delete injectedProps.onRef;
+      injectedProps.is = "blockly";
       return /*#__PURE__*/_react["default"].createElement('xml', injectedProps);
     }
   }]);

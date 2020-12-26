@@ -18,6 +18,7 @@ exports[`BlocklyDrawerComponent initializes correctly when initial workspace is 
     }
   />
   <xml
+    is="blockly"
     style={
       Object {
         "display": "none",
@@ -45,6 +46,7 @@ exports[`BlocklyDrawerComponent renders correctly when appearance is passed 1`] 
     }
   />
   <xml
+    is="blockly"
     style={
       Object {
         "display": "none",
@@ -53,9 +55,11 @@ exports[`BlocklyDrawerComponent renders correctly when appearance is passed 1`] 
   >
     <category
       colour="blue"
+      is="blockly"
       name="TestCategory"
     >
       <block
+        is="blockly"
         type="TestName"
       />
     </category>
@@ -81,6 +85,7 @@ exports[`BlocklyDrawerComponent renders correctly when no tools nor predefined c
     }
   />
   <xml
+    is="blockly"
     style={
       Object {
         "display": "none",
@@ -108,6 +113,7 @@ exports[`BlocklyDrawerComponent renders correctly when predefined categories are
     }
   />
   <xml
+    is="blockly"
     style={
       Object {
         "display": "none",
@@ -116,6 +122,7 @@ exports[`BlocklyDrawerComponent renders correctly when predefined categories are
   >
     <category
       custom="PROCEDURE"
+      is="blockly"
       name="Functions"
     />
   </xml>
@@ -140,6 +147,7 @@ exports[`BlocklyDrawerComponent renders correctly when tools are passed 1`] = `
     }
   />
   <xml
+    is="blockly"
     style={
       Object {
         "display": "none",
@@ -147,9 +155,11 @@ exports[`BlocklyDrawerComponent renders correctly when tools are passed 1`] = `
     }
   >
     <category
+      is="blockly"
       name="TestCategory"
     >
       <block
+        is="blockly"
         type="TestName"
       />
     </category>
