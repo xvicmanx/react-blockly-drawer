@@ -62,7 +62,7 @@ class BlocklyDrawer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    initTools(this.props.tools);
+    initTools(this.props.tools, this.props.language);
     this.workspacePlayground.clear();
 
     if (this.props.workspaceXML) {
